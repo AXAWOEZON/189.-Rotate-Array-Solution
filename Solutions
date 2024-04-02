@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// 1 Solution:
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int i = nums.size(); // check the entire size of the array variable i
+        k = k % i; // determine % of k using an array, make sure k is not greater than the length of the array
+
+        // Create a temporary array to store the last k elements
+        vector<int> temp(nums.begin() + i - k, nums.end()); // create an array that we will rotate our examples
+
+        // Shift the remaining elements k positions to the right
+        for (int n = i - 1; n >= k; n--) {  
+            nums[n] = temp[n - k];
+        }
+         // Copy the temporary array back to nums
+        for (int q = 0; q < k; ++q) { 
+            nums[q] = temp[q];
+        }
+    }
+};
+// 2 Solution:
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int i = nums.size();
+
+        vector<int> temp(nums);
+
+        for (int q = 0; q < i; q++) {
+            nums[(q + k) % i] = temp[q];
+        }
+    }
+};
